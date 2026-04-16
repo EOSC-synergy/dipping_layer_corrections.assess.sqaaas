@@ -1,0 +1,64 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: feature/pynblint_fix
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/stevenjgibbons/dipping_layer_corrections:
+      branch: main
+      repo: https://github.com/stevenjgibbons/dipping_layer_corrections/
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/stevenjgibbons/dipping_layer_corrections git:
+        commands:
+        - /usr/bin/env sh .sqa/script.tacky-tomato-saola.sh
+        container: qc.acc_shaky-lemon-newfoundland
+  QC.Doc:
+    repos:
+      github.com/stevenjgibbons/dipping_layer_corrections find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.beady-violet-jellyfish.sh
+        container: qc.doc_shaky-peach-okapi
+      github.com/stevenjgibbons/dipping_layer_corrections git:
+        commands:
+        - /usr/bin/env sh .sqa/script.woozy-vermilion-quetzal.sh
+        container: qc.doc_skinny-brown-weasel
+      github.com/stevenjgibbons/dipping_layer_corrections markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.stealthy-mustard-tamarin.sh
+        container: qc.doc_blurry-goldenrod-tuatara
+  QC.Lic:
+    repos:
+      github.com/stevenjgibbons/dipping_layer_corrections licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.scanty-cyan-lynx.sh
+        container: qc.lic_squeaky-tomato-turkey
+  QC.Sec:
+    repos:
+      github.com/stevenjgibbons/dipping_layer_corrections bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.sloppy-peach-crab.sh
+        container: qc.sec_geeky-cobalt-koala
+  QC.Sty:
+    repos:
+      github.com/stevenjgibbons/dipping_layer_corrections flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.sleazy-ecru-lemming.sh
+        container: qc.sty_skanky-gold-walrus
+  QC.Uni:
+    repos:
+      github.com/stevenjgibbons/dipping_layer_corrections pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.cozy-brown-schnauzer.sh
+        container: qc.uni_wimpy-orange-uakari
+  QC.Ver:
+    repos:
+      github.com/stevenjgibbons/dipping_layer_corrections get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.droopy-cerulean-argentino.sh
+        container: qc.ver_homey-smalt-monkey
+timeout: 5400
